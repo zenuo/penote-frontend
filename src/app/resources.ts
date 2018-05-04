@@ -15,3 +15,11 @@ export interface Session {
     user_id:string
     session:string
 }
+
+export interface User {
+    id: string,
+    name: string,
+    email: string,
+    bio:string,
+    updated: Date
+}
