@@ -1,16 +1,17 @@
 .character-detail-card {
-    max-width: 600px;
+    width: 500px;
+    align-self: center;
     padding: 30px;
 }
 
 .character-detail-svg {
     width: 350px;
-    vertical-align: center;
+    padding: 30px;
 }
 
 .character-detail-bmp {
     width: 350px;
-    vertical-align: center;
+    padding: 30px;
 }
 
 /* 反转 */
