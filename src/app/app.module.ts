@@ -19,6 +19,7 @@ import { UserService } from './user.service';
 import { NavbarComponent, SigninDialog, SignupDialog } from './navbar/navbar.component';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { CharacterService } from './character.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CharacterService } from './character.service';
     SigninDialog,
     NavbarComponent,
     SignupDialog,
-    CharacterDetailComponent
+    CharacterDetailComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

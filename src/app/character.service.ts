@@ -6,6 +6,7 @@ import { MessageService } from './message.service';
 import { Character, Constant, Util } from './resources';
 
 const endpoint = '/api/characters'
+const listEndpoint = '/api/character-list'
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +18,29 @@ export class CharacterService {
   ) { }
 
   /**
-   * 根据字符ID获取字符信息
-   * @param character_id 字符ID
+   * 根据文字ID获取文字信息
+   * @param character_id 文字ID
    */
   public get_by_id(character_id: string): Observable<Character> {
-    console.info(`根据字符ID获取字符信息-${character_id}`)
+    console.info(`根据文字ID获取文字信息-${character_id}`)
     return this.httpClient.get<Character>(
       `${endpoint}/${character_id}`,
       { headers: { 'session': Constant.session_id } }
     ).pipe(catchError(
       Util.handleError(
-        () => { this.messageService.openSnackBar('字符', `获取${character_id}异常`) },
+        () => { this.messageService.openSnackBar('文字', `获取${character_id}异常`) },
         null)))
+  }
+
+  /**
+   * 根据段落ID获取文字列表
+   * @param para_id 段落ID
+   */
+  public get_list_by_para_id(para_id): Observable<Character[]> {
+    return this.httpClient
+      .get<Character[]>(
+        `${listEndpoint}?para=${para_id}`,
+        { headers: { 'session': Constant.session_id } }
+      )
   }
 }
