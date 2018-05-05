@@ -17,7 +17,9 @@ import { UserService } from '../user.service';
 export class NavbarComponent {
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sessionService: SessionService,
+    private messageService: MessageService
   ) { }
 
   //点击"登入"按钮
@@ -25,6 +27,19 @@ export class NavbarComponent {
     let dialogRef = this.dialog.open(SigninDialog, {
       width: '250px'
     });
+  }
+
+  //点击"登出"按钮
+  signoutClick() {
+    this.sessionService.signout().subscribe(result => {
+      if (result) {
+        //写入常量
+        Constant.session_id = null
+        Constant.user = null
+        //提示
+        this.messageService.openSnackBar('登出', `成功`)
+      }
+    })
   }
 
   isSignin(): boolean {

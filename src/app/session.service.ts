@@ -3,10 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { Session } from './resources';
+import { Session, Constant } from './resources';
 
 @Injectable()
 export class SessionService {
+
+  endpoint = '/api/sessions'
 
   constructor(
     private httpClient: HttpClient,
@@ -15,17 +17,23 @@ export class SessionService {
 
   //登入
   signin(user_name: string, password: string): Observable<Session> {
-    const endpoint: string = '/api/sessions';
     const body = { "user_name": user_name, "password": password }
 
     return this.httpClient
-      .post<Session>(endpoint, body)
-      .pipe(catchError(this.handleError<Session>(`服务器异常`)));
+      .post<Session>(this.endpoint, body)
+      .pipe(catchError(this.handleError<Session>(`服务器异常`, null)));
   }
 
   //登出
   signout(): Observable<boolean> {
-    return of(true)
+    if (Constant.session_id == null) {
+      //若未登录,返回失败
+      return of(false)
+    } else {
+      return this.httpClient
+        .delete<boolean>(`${this.endpoint}/${Constant.session_id}`)
+        .pipe(catchError(this.handleError<boolean>(`服务器异常`, false)));
+    }
   }
 
   //错误处理
