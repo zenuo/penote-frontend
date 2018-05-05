@@ -1,3 +1,15 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class Constant {
+    // 会话ID
+    public static session_id: string = null;
+    // 用户
+    public static user: User = null;
+}
+
 export interface Character {
     id: string
     index_number: number

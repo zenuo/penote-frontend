@@ -13,6 +13,7 @@ export class SessionService {
     private messageService: MessageService
   ) { }
 
+  //登入
   signin(user_name: string, password: string): Observable<Session> {
     const endpoint: string = '/api/sessions';
     const body = { "user_name": user_name, "password": password }
@@ -20,6 +21,11 @@ export class SessionService {
     return this.httpClient
       .post<Session>(endpoint, body)
       .pipe(catchError(this.handleError<Session>(`服务器异常`)));
+  }
+
+  //登出
+  signout(): Observable<boolean> {
+    return of(true)
   }
 
   //错误处理

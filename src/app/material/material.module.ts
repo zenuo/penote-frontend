@@ -44,6 +44,8 @@ import {
   MatToolbarModule,
   MatTooltipModule,
 } from '@angular/material';
+import { LayoutModule } from '@angular/cdk/layout';
+
 
 /**
  * NgModule that includes all Material modules that are required to serve the app.
@@ -96,7 +98,8 @@ import {
     MatTooltipModule,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    LayoutModule
   ]
 })
 export class MaterialModule { }

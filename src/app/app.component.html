@@ -1,23 +1,2 @@
-<nav class="docs-navbar-header">
-  <a mat-button class="docs-button" routerLink="/">
-      <span>Penote</span>
-  </a>
-  <a mat-button class="docs-button" routerLink="plaza">
-      广场
-  </a>
-  <a *ngIf="constant.session_id != null" mat-button class="docs-button" routerLink="personal">
-      个人
-  </a>
-  <div class="flex-spacer"></div>
-  <a *ngIf="constant.session_id == null" mat-button class="docs-button" routerLink="/signin">
-      登入
-  </a>
-  <a *ngIf="constant.session_id == null" mat-button class="docs-button" routerLink="signup">
-      注册
-  </a>
-  <a *ngIf="constant.session_id != null" mat-button class="docs-button" routerLink="signout">
-      登出
-  </a>
-</nav>
-
+<navbar></navbar>
 <router-outlet></router-outlet>

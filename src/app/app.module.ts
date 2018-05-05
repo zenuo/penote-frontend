@@ -6,17 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { Constant } from './constants';
+import { Constant } from './resources';
 import { PostsComponent } from './posts/posts.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadService } from './file-upload.service';
 import { CharacterComponent } from './character/character.component';
 import { ParagraphComponent } from './paragraph/paragraph.component';
 import { SessionService } from './session.service';
-import { SigninComponent, SigninDialog } from './signin/signin.component';
 import { MessageService } from './message.service';
 import { RoutingModule } from './routing.module';
-import { UserService } from './user.service'
+import { UserService } from './user.service';
+import { NavbarComponent,SigninDialog } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -26,15 +26,15 @@ import { UserService } from './user.service'
     FileUploadComponent,
     CharacterComponent,
     ParagraphComponent,
-    SigninComponent,
-    SigninDialog
+    SigninDialog,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RoutingModule,
+    RoutingModule,//注意 RoutingModule 是最后一个
     FormsModule
   ],
   providers: [
