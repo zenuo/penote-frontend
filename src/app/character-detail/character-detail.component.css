@@ -1,0 +1,19 @@
+.character-detail-card {
+    max-width: 600px;
+    padding: 30px;
+}
+
+.character-detail-svg {
+    width: 350px;
+    vertical-align: center;
+}
+
+.character-detail-bmp {
+    width: 350px;
+    vertical-align: center;
+}
+
+/* 反转 */
+.inverted {
+	filter: invert(100%);
+}

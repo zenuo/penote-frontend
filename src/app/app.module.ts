@@ -17,7 +17,8 @@ import { MessageService } from './message.service';
 import { RoutingModule } from './routing.module';
 import { UserService } from './user.service';
 import { NavbarComponent, SigninDialog, SignupDialog } from './navbar/navbar.component';
-
+import { CharacterDetailComponent } from './character-detail/character-detail.component';
+import { CharacterService } from './character.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavbarComponent, SigninDialog, SignupDialog } from './navbar/navbar.com
     ParagraphComponent,
     SigninDialog,
     NavbarComponent,
-    SignupDialog
+    SignupDialog,
+    CharacterDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { NavbarComponent, SigninDialog, SignupDialog } from './navbar/navbar.com
     Constant,
     SessionService,
     MessageService,
-    UserService
+    UserService,
+    CharacterService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -1,0 +1,30 @@
+<mat-card *ngIf="char !== null && char.id !== null">
+    <mat-card-content>
+        <h2>文字细节</h2>
+        <h3>ID: {{char.id}}</h3>
+        <mat-tab-group class="demo-tab-group">
+            <mat-tab label="矢量">
+                <mat-card class="character-detail-card">
+                    <mat-card-content>
+                        <img class="character-detail-svg" alt="矢量版本" src="/svg/{{char.id}}.svg">
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="位图">
+                <mat-card class="character-detail-card">
+                    <mat-card-content>
+                        <img class="character-detail-bmp inverted" alt="位图版本" src="/bmp/{{char.id}}.bmp">
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="其他信息">
+                <mat-card>
+                    <mat-card-title>段落ID: {{char.paragraph_id}}</mat-card-title>
+                    <mat-card-title>所在段落序号: {{char.index_number}}</mat-card-title>
+                    <mat-card-title>创建时间: {{char.created}}</mat-card-title>
+                    <mat-card-title>更新时间: {{char.updated}}</mat-card-title>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

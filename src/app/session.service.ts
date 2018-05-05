@@ -5,11 +5,10 @@ import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Session, Constant, Util } from './resources';
 
+const endpoint = '/api/sessions'
+
 @Injectable()
 export class SessionService {
-
-  endpoint = '/api/sessions'
-
   constructor(
     private httpClient: HttpClient,
     private messageService: MessageService
@@ -21,9 +20,10 @@ export class SessionService {
    * @param password 密码
    */
   signin(user_name: string, password: string): Observable<Session> {
+    console.info(`登入-用户名${user_name}-密码${password}`)
     const body = { "user_name": user_name, "password": password }
     return this.httpClient
-      .post<Session>(this.endpoint, body)
+      .post<Session>(endpoint, body)
       .pipe(catchError(Util.handleError(
         () => { this.messageService.openSnackBar('登出', "登出失败") },
         null
@@ -34,12 +34,13 @@ export class SessionService {
    * 登出
    */
   signout(): Observable<boolean> {
+    console.info('登出')
     if (Constant.session_id == null) {
       //若未登录,返回失败
       return of(false)
     } else {
       return this.httpClient
-        .delete<boolean>(`${this.endpoint}/${Constant.session_id}`)
+        .delete<boolean>(`${endpoint}/${Constant.session_id}`)
         .pipe(catchError(Util.handleError(
           () => { this.messageService.openSnackBar('登出', "登出失败") },
           false
