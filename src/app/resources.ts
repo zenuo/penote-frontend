@@ -1,13 +1,23 @@
-import { Injectable } from '@angular/core';
+import { of, Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
-@Injectable({
-    providedIn: 'root'
-})
 export class Constant {
     // 会话ID
     public static session_id: string = null;
     // 用户
     public static user: User = null;
+}
+
+export class Util {
+    public static handleError<T>(
+        func: Function, 
+        result?: T
+    ) {
+        return (error: any): Observable<T> => {
+          func.apply(null)
+          return of(result as T)
+        };
+      }
 }
 
 export interface Character {
