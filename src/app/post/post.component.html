@@ -1,0 +1,14 @@
+<li *ngFor="let para of paragraphs">
+  <app-paragraph [id]="para.id"></app-paragraph>
+</li>
+<mat-card *ngIf="post !== null">
+    <mat-card-title>文章标题: {{post.title}}</mat-card-title>
+    <mat-card-subtitle>文章ID: {{post.id}}</mat-card-subtitle>
+    <mat-card-subtitle>创建时间: {{post.created}}</mat-card-subtitle>
+    <mat-card-subtitle>更新时间: {{post.updated}}</mat-card-subtitle>
+    <mat-card-content>
+      <div class="post" *ngFor="let para of paragraphs">
+          <app-paragraph [id]="para.id"></app-paragraph>
+      </div>
+    </mat-card-content>
+  </mat-card>

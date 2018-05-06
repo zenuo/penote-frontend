@@ -40,6 +40,14 @@ export interface Paragraph {
     updated: Date
 }
 
+export interface Post {
+    id: string
+    user_id: string
+    title: string
+    created: Date
+    updated: Date
+}
+
 export interface Session {
     user_id: string
     session: string

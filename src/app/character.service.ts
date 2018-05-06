@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { Character, Constant, Util } from './resources';
+import { Character, Constant } from './resources';
 
 const endpoint = '/api/characters'
 const listEndpoint = '/api/character-list'
@@ -26,10 +25,7 @@ export class CharacterService {
     return this.httpClient.get<Character>(
       `${endpoint}/${character_id}`,
       { headers: { 'session': Constant.session_id } }
-    ).pipe(catchError(
-      Util.handleError(
-        () => { this.messageService.openSnackBar('文字', `获取${character_id}异常`) },
-        null)))
+    )
   }
 
   /**

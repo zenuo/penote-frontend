@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { Constant } from './resources';
-import { PostsComponent } from './posts/posts.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileUploadService } from './file-upload.service';
 import { CharacterComponent } from './character/character.component';
@@ -20,11 +19,13 @@ import { NavbarComponent, SigninDialog, SignupDialog } from './navbar/navbar.com
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { CharacterService } from './character.service';
 import { FooterComponent } from './footer/footer.component';
+import { ParagraphService } from './paragraph.service';
+import { PostComponent } from './post/post.component';
+import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent,
     FileUploadComponent,
     CharacterComponent,
     ParagraphComponent,
@@ -32,7 +33,8 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     SignupDialog,
     CharacterDetailComponent,
-    FooterComponent
+    FooterComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,9 @@ import { FooterComponent } from './footer/footer.component';
     SessionService,
     MessageService,
     UserService,
-    CharacterService
+    CharacterService,
+    ParagraphService,
+    PostService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

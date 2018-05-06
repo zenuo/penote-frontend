@@ -1,3 +1,11 @@
-<div *ngFor="let char of characters">
-  <app-character [id]="char.id"></app-character>
-</div>
+<mat-card *ngIf="paragraph !== null">
+  <mat-card-title>段落ID: {{paragraph.id}}</mat-card-title>
+  <mat-card-subtitle>所属文章ID: {{paragraph.post_id}}</mat-card-subtitle>
+  <mat-card-subtitle>创建时间: {{paragraph.created}}</mat-card-subtitle>
+  <mat-card-subtitle>更新时间: {{paragraph.updated}}</mat-card-subtitle>
+  <mat-card-content>
+    <div class="paragraph" *ngFor="let char of characters">
+        <app-character [id]="char.id"></app-character>
+    </div>
+  </mat-card-content>
+</mat-card>

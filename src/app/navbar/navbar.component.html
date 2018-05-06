@@ -4,23 +4,21 @@
       <a mat-button routerLink="/">
         <span>Penote</span>
       </a>
-      <a mat-button routerLink="plaza">
-          广场
-        </a>
-        <a *ngIf="isSignin()" mat-button routerLink="/personal">
-          个人
-        </a>
-        <!-- 分隔 -->
-        <div class="flex-spacer"></div>
-        <a *ngIf="!isSignin()" mat-button (click)="signinClick()">
-          登入
-        </a>
-        <a *ngIf="!isSignin()" mat-button (click)="signupClick()">
-          注册
-        </a>
-        <a *ngIf="isSignin()" mat-button (click)="signoutClick()">
-          登出
-        </a>
+      <a *ngIf="isSignin()" mat-button routerLink="/personal">
+        个人
+      </a>
+      <!-- 分隔 -->
+      <div class="flex-spacer"></div>
+      <!-- 按钮 -->
+      <a *ngIf="!isSignin()" mat-button (click)="signinClick()">
+        登入
+      </a>
+      <a *ngIf="!isSignin()" mat-button (click)="signupClick()">
+        注册
+      </a>
+      <a *ngIf="isSignin()" mat-button (click)="signoutClick()">
+        登出
+      </a>
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>
