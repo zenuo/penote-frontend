@@ -3,7 +3,7 @@ import { catchError, tap } from 'rxjs/operators';
 
 export class Constant {
     // 会话ID
-    public static session_id: string = '7ac7cb5b-1bbb-4659-b14a-305714b1c100';
+    public static session_id: string = 'd088b7c5-ca52-45c1-9d3f-7efc4db52d92';
     // 用户
     public static user: User = null;
 }

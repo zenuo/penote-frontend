@@ -1,19 +1,20 @@
 <h1 mat-dialog-title>注册</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="用户名" type="text" [(ngModel)]="user_name">
+    <input matInput placeholder="用户名" type="text" [(ngModel)]="user_name" required>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="电邮" type="email" [(ngModel)]="email">
+    <input matInput placeholder="电邮" type="email" [(ngModel)]="email" [formControl]="email_form" required>
+    <mat-error *ngIf="email_form.invalid">{{getErrorMessage()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="签名" type="text" [(ngModel)]="bio">
+    <input matInput placeholder="签名" type="text" [(ngModel)]="bio" required>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="密码" type="password" [(ngModel)]="password">
+    <input matInput placeholder="密码" type="password" [(ngModel)]="password" required>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="确认密码" type="password" [(ngModel)]="password_check">
+    <input matInput placeholder="确认密码" type="password" [(ngModel)]="password_check" required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

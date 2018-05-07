@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Router } from '@angular/router';
 
 import { SessionService } from '../session.service';
 import { MessageService } from '../message.service';
@@ -26,15 +25,15 @@ export class NavbarComponent {
    * 点击"登入"按钮
    */
   signinClick() {
-    let dialogRef = this.dialog.open(SigninDialog, {
+    const dialogRef = this.dialog.open(SigninDialog, {
       width: '250px'
-    });
+    })
   }
 
   signupClick() {
-    let dialogRef = this.dialog.open(SignupDialog, {
+    const dialogRef = this.dialog.open(SignupDialog, {
       width: '250px'
-    });
+    })
   }
 
   /**
@@ -42,13 +41,11 @@ export class NavbarComponent {
    */
   signoutClick() {
     this.sessionService.signout().subscribe(result => {
-      if (result) {
-        //写入常量
-        Constant.session_id = null
-        Constant.user = null
-        //提示
-        this.messageService.openSnackBar('登出', `成功`)
-      }
+      // 写入常量
+      Constant.session_id = null
+      Constant.user = null
+      // 提示
+      this.messageService.openSnackBar('登出', '成功')
     })
   }
 
@@ -129,6 +126,8 @@ export class SignupDialog {
   bio: string
   password_check: string
 
+  email_form = new FormControl('', [Validators.required, Validators.email]);
+
   constructor(
     public dialogRef: MatDialogRef<SignupDialog>,
     private messageService: MessageService,
@@ -141,16 +140,16 @@ export class SignupDialog {
   submit(): void {
     if (this.password == this.password_check) {
       this.userService
-      .signup(this.user_name, this.email, this.bio, this.password)
-      .subscribe(user => {
-        if (user != null) {
-          this.messageService.openSnackBar('注册', '成功, 可使用该帐号登录')
-          //关闭对话框
-          this.dialogRef.close()
-        } else {
-          this.messageService.openSnackBar('注册', '失败, 请重试其他用户名')
-        }
-      })
+        .signup(this.user_name, this.email, this.bio, this.password)
+        .subscribe(user => {
+          if (user != null) {
+            this.messageService.openSnackBar('注册', '成功, 可使用该帐号登录')
+            //关闭对话框
+            this.dialogRef.close()
+          } else {
+            this.messageService.openSnackBar('注册', '失败, 请重试其他用户名')
+          }
+        })
     } else {
       alert('请确认密码是否相同')
     }
@@ -161,5 +160,14 @@ export class SignupDialog {
    */
   cancel(): void {
     this.dialogRef.close()
+  }
+
+  /**
+   * 获取电邮错误信息
+   */
+  getErrorMessage() {
+    return this.email_form.hasError('required') ? '必须输入电邮' :
+      this.email_form.hasError('email') ? '错误电邮格式' :
+        ''
   }
 }
