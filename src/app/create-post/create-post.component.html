@@ -1,0 +1,36 @@
+<mat-vertical-stepper #stepper>
+  <mat-step [stepControl]="postFormGroup">
+    <form [formGroup]="postFormGroup">
+      <ng-template matStepLabel>创建文章</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="标题" formControlName="title" type="text" required>
+      </mat-form-field>
+      <p *ngIf="post !== null">文章"{{post.title}}"已创建, 请点击下一步</p>
+      <div>
+        <button mat-button (click)="createPost()" matStepperNext>下一步</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="paragraphFormGroup">
+    <form [formGroup]="paragraphFormGroup">
+      <ng-template matStepLabel>创建段落</ng-template>
+      <div>
+        <label for="file">选择需要上传的文件</label>
+        <input type="file" name="file" (change)="files = $event.target.files">
+        <button *ngIf="files.length !== 0" mat-button (click)="uploadFile()">上传{{files[0].file}}</button>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>完成</ng-template>
+    <p *ngIf="post !== null">创建文章"{{post.title}}"完成, 点击查看按钮</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>

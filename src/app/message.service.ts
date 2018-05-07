@@ -13,7 +13,7 @@ export class MessageService {
    * @param action 动作
    */
   openSnackBar(message: string, action: string) {
-    console.info(`消息, ${message}-${action}`)
+    console.info(`${Date()} ${message}-${action}`)
     this.snackBar.open(message, action, {
       duration: 2000,
     })

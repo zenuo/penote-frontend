@@ -21,10 +21,10 @@ export class PostService {
    * 根据文章ID获取
    * @param post_id 文章ID
    */
-  public get_by_id(post_id:string): Observable<Post> {
+  public get_by_id(post_id: string): Observable<Post> {
     return this.httpClient.get<Post>(
       `${endpoint}/${post_id}`,
-      { headers: { 'session': Constant.session_id } }
+      { headers: { session: Constant.session_id } }
     )
   }
 
@@ -35,7 +35,24 @@ export class PostService {
   public get_list_by_user_id(user_id): Observable<Post[]> {
     return this.httpClient.get<Post[]>(
       `${listEndpoint}?user=${user_id}`,
-      { headers: { 'session': Constant.session_id } }
+      { headers: { session: Constant.session_id } }
+    )
+  }
+
+  /**
+   * 创建文章
+   * @param user_id 用户ID
+   * @param title 标题
+   */
+  public create(user_id: string, title: string): Observable<Post> {
+    const body = {
+      'user_id': user_id,
+      'title': title,
+    }
+    return this.httpClient.post<Post>(
+      endpoint,
+      body,
+      { headers: { session: Constant.session_id } }
     )
   }
 }
