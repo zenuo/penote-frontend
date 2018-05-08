@@ -28,7 +28,7 @@ export class FileUploadService {
         endpoint,
         formData,
         {
-          headers: { session: Constant.session_id, 'post_id': post_id },
+          headers: { session: Constant.session_id, post: post_id },
           responseType: 'text'
         }
       )

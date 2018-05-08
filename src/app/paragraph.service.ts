@@ -24,8 +24,7 @@ export class ParagraphService {
    */
   public get_by_id(para_id: string): Observable<Paragraph> {
     return this.httpClient.get<Paragraph>(
-      `${endpoint}/${para_id}`,
-      { headers: { 'session': Constant.session_id } }
+      `${endpoint}/${para_id}`
     ).pipe(
       catchError(Util.handleError(
         () => { },
@@ -38,9 +37,13 @@ export class ParagraphService {
    * @param post_id 文章ID
    */
   public get_list_by_post_id(post_id: string): Observable<Paragraph[]> {
+    console.info(`根据文章ID获取列表${post_id}`)
     return this.httpClient.get<Paragraph[]>(
-      `${endpoint}?post=${post_id}`,
-      { headers: { 'session': Constant.session_id } }
+      `${listEndpoint}?post=${post_id}`
+    ).pipe(
+      catchError(Util.handleError(
+        () => { },
+        null))
     )
   }
 }

@@ -23,8 +23,7 @@ export class PostService {
    */
   public get_by_id(post_id: string): Observable<Post> {
     return this.httpClient.get<Post>(
-      `${endpoint}/${post_id}`,
-      { headers: { session: Constant.session_id } }
+      `${endpoint}/${post_id}`
     )
   }
 
@@ -34,8 +33,7 @@ export class PostService {
    */
   public get_list_by_user_id(user_id): Observable<Post[]> {
     return this.httpClient.get<Post[]>(
-      `${listEndpoint}?user=${user_id}`,
-      { headers: { session: Constant.session_id } }
+      `${listEndpoint}?user=${user_id}`
     )
   }
 

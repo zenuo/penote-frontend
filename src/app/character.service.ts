@@ -23,8 +23,7 @@ export class CharacterService {
   public get_by_id(character_id: string): Observable<Character> {
     console.info(`根据文字ID获取文字信息-${character_id}`)
     return this.httpClient.get<Character>(
-      `${endpoint}/${character_id}`,
-      { headers: { 'session': Constant.session_id } }
+      `${endpoint}/${character_id}`
     )
   }
 
@@ -35,8 +34,7 @@ export class CharacterService {
   public get_list_by_para_id(para_id): Observable<Character[]> {
     return this.httpClient
       .get<Character[]>(
-        `${listEndpoint}?para=${para_id}`,
-        { headers: { 'session': Constant.session_id } }
+        `${listEndpoint}?para=${para_id}`
       )
   }
 }

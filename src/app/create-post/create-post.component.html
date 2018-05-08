@@ -14,23 +14,33 @@
   <mat-step [stepControl]="paragraphFormGroup">
     <form [formGroup]="paragraphFormGroup">
       <ng-template matStepLabel>创建段落</ng-template>
+      <p *ngIf="paragraphs.length === 0">该文章未添加段落，请上传段落图片</p>
+      <p *ngIf="paragraphs.length !== 0">已添加{{paragraphs.length}}个段落</p>
+      <mat-card *ngIf="post !== null && post.id !== null">
+        <mat-card-content>
+          <div class="post" *ngFor="let para of paragraphs">
+            <app-paragraph [id]="para.id"></app-paragraph>
+          </div>
+        </mat-card-content>
+      </mat-card>
       <div>
         <label for="file">选择需要上传的文件</label>
-        <input type="file" name="file" (change)="files = $event.target.files">
+        <input type="file" name="file" (change)="files=$event.target.files">
         <button *ngIf="files.length !== 0" mat-button (click)="uploadFile()">上传{{files[0].file}}</button>
       </div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>上一步</button>
+        <button mat-button matStepperNext>下一步</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>完成</ng-template>
-    <p *ngIf="post !== null">创建文章"{{post.title}}"完成, 点击查看按钮</p>
+    <p *ngIf="post !== null && post.id !== null">创建文章"{{post.title}}"完成, 点击查看按钮</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <a href="/post/{{post.id}}" *ngIf="post !== null && post.id !== null">
+        <button *ngIf="post !== null && post.id !== null" mat-button>查看</button>
+      </a>
     </div>
   </mat-step>
 </mat-vertical-stepper>

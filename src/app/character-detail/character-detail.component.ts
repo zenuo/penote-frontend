@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { CharacterService } from '../character.service';
 import { Character } from '../resources';
@@ -21,13 +20,12 @@ export class CharacterDetailComponent implements OnInit {
   constructor(
     private characterService: CharacterService,
     private route: ActivatedRoute,
-    private location: Location,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
     //读取路径参数
-    let id = this.route.snapshot.paramMap.get('id');
+    let id: string = this.route.snapshot.paramMap.get('id')
     console.info(`字符ID是${id}`)
     //获取信息
     this.characterService.get_by_id(id)
