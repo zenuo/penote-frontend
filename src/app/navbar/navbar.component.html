@@ -7,6 +7,12 @@
       <a *ngIf="isSignin()" mat-button routerLink="/personal">
         个人
       </a>
+      <a mat-button routerLink="/help">
+        帮助
+      </a>
+      <a mat-button routerLink="/about">
+        关于
+      </a>
       <!-- 分隔 -->
       <div class="flex-spacer"></div>
       <!-- 按钮 -->
@@ -18,6 +24,9 @@
       </a>
       <a *ngIf="isSignin()" mat-button (click)="signoutClick()">
         登出
+      </a>
+      <a *ngIf="isSignin()" mat-button routerLink="/create-post">
+        <span>创建文章</span>
       </a>
     </mat-toolbar>
   </mat-sidenav-content>

@@ -15,7 +15,7 @@ export class CharacterDetailComponent implements OnInit {
   /**
    * 字符
    */
-  private char: Character = null
+  char: Character = null
 
   constructor(
     private characterService: CharacterService,

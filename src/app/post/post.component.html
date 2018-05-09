@@ -1,8 +1,11 @@
+<mat-card *ngIf="post === null">
+  <mat-card-title>对不起，不存在该文章！</mat-card-title>
+</mat-card>
 <mat-card *ngIf="post !== null && post.id !== null">
   <mat-card-title>标题: {{post.title}}</mat-card-title>
   <mat-card-content>
-    <div class="post" *ngFor="let para of paragraphs">
-      <app-paragraph [id]="para.id"></app-paragraph>
+    <div *ngFor="let para of paragraphs">
+      <app-paragraph [paragraph]="para"></app-paragraph>
     </div>
   </mat-card-content>
   <mat-card-subtitle>更新时间: {{post.updated}}</mat-card-subtitle>

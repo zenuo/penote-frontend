@@ -66,6 +66,7 @@ export class CreatePostComponent implements OnInit {
    * @param files 文件列表
    */
   uploadFile() {
+    this.messageService.openSnackBar('段落', `上传${this.files[0].name}`)    
     this.fileUploadService.upload_paragraph(this.files[0], this.post.id)
       .subscribe(
         para_id => {

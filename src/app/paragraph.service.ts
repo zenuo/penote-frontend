@@ -46,4 +46,15 @@ export class ParagraphService {
         null))
     )
   }
+
+  /**
+   * 根据ID删除
+   * @param para_id 需要删除的段落ID
+   */
+  public delete_by_id(para_id: string): Observable<boolean> {
+    return this.httpClient.delete<boolean>(
+      `${endpoint}/${para_id}`,
+      {headers: {session: Constant.session_id}}
+    )
+  }
 }

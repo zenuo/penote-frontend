@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-title *ngIf="posts.length == 0">
+    还没有文章，快去创建吧！
+  </mat-card-title>
+  <mat-card-content>
+    <div *ngFor="let i of posts">
+      <app-post-preview [post]="i"></app-post-preview>
+    </div>
+  </mat-card-content>
+</mat-card>

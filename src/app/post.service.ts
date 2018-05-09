@@ -53,4 +53,13 @@ export class PostService {
       { headers: { session: Constant.session_id } }
     )
   }
+
+  /**
+   * 获取所有
+   */
+  public get_all(): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(
+      listEndpoint
+    )
+  }
 }

@@ -1,0 +1,13 @@
+<mat-card *ngIf="post !== null && post.id !== null">
+  <a href="/post/{{post.id}}">
+    <mat-card-title>{{post.title}}</mat-card-title>
+  </a>
+  <mat-card-content>
+    <div *ngFor="let i of paragraphs">
+      <app-paragraph [paragraph]="i"></app-paragraph>
+    </div>
+  </mat-card-content>
+
+  <mat-divider [inset]="true"></mat-divider>
+  <mat-card-subtitle>更新时间: {{post.updated}}</mat-card-subtitle>
+</mat-card>

@@ -14,9 +14,9 @@ export class PostComponent implements OnInit {
 
   @Input() id: string = null
 
-  private post: Post = null
+  post: Post = null
 
-  private paragraphs: Paragraph[] = []
+  paragraphs: Paragraph[] = []
 
   constructor(
     private postService: PostService,

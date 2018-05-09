@@ -22,6 +22,10 @@ import { ParagraphService } from './paragraph.service';
 import { PostComponent } from './post/post.component';
 import { PostService } from './post.service';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { AllPostComponent } from './all-post/all-post.component';
+import { PostPreviewComponent } from './post-preview/post-preview.component';
+import { HelpComponent } from './help/help.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { CreatePostComponent } from './create-post/create-post.component';
     CharacterDetailComponent,
     FooterComponent,
     PostComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    AllPostComponent,
+    PostPreviewComponent,
+    HelpComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

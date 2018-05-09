@@ -10,18 +10,15 @@ import { MessageService } from '../message.service';
   styleUrls: ['./paragraph.component.css']
 })
 export class ParagraphComponent implements OnInit {
-  /**
-   * 段落ID
-   */
-  @Input() id: string = 'dc3c1294-5d1c-45ce-888c-a0808abd7ede';
+
   /**
    * 段落实例
    */
-  private paragraph: Paragraph = null;
+  @Input() paragraph: Paragraph
   /**
    * 字符列表
    */
-  private characters: Character[] = null;
+  private characters: Character[] = null
 
   constructor(
     private characterService: CharacterService,
@@ -30,23 +27,29 @@ export class ParagraphComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //获取段落实例
-    this.paragraphService
-      .get_by_id(this.id)
-      .subscribe(para => {
-        if (para !== null && para.id !== null) {
-          this.paragraph = para
-          //获取字符列表
-          this.characterService
-            .get_list_by_para_id(this.id)
-            .subscribe(chars => {
-              if (chars !== null && chars.length !== 0) {
-                this.characters = chars
-              }
-            })
-        } else {
-          this.messageService.openSnackBar('段落', `获取${this.id}失败`)
+    //获取字符列表
+    this.characterService   
+      .get_list_by_para_id(this.paragraph.id)
+      .subscribe(chars => {
+        if (chars !== null && chars.length !== 0) {
+          this.characters = chars
         }
       })
+  }
+
+  isSignin(): boolean {
+    return Constant.session_id !== null
+  }
+
+  delete(): void {
+    let confirmed: boolean = confirm('确认删除此段落？')
+    if (confirmed) {
+      this.paragraphService.delete_by_id(this.paragraph.id).subscribe(ret => {
+        if (ret) {
+          this.messageService.openSnackBar('段落', `删除${this.paragraph.id}完成`)
+          this.ngOnInit()
+        }
+      })
+    }
   }
 }

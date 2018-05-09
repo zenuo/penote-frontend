@@ -1,11 +1,11 @@
 <mat-card *ngIf="paragraph !== null">
-  <mat-card-title>段落ID: {{paragraph.id}}</mat-card-title>
+  <!-- <mat-card-title>段落ID: {{paragraph.id}}</mat-card-title> -->
   <mat-card-content>
-    <div *ngFor="let char of characters">
+    <div class="character" *ngFor="let char of characters">
       <app-character [id]="char.id"></app-character>
     </div>
   </mat-card-content>
-  <mat-card-subtitle></mat-card-subtitle>
   <mat-card-subtitle>更新时间: {{paragraph.updated}}</mat-card-subtitle>
-  <mat-divider [inset]="true"></mat-divider>
+  <button *ngIf="isSignin()" mat-button (click)="delete()">删除</button>
+  <!-- <mat-divider [inset]="true"></mat-divider> -->
 </mat-card>
