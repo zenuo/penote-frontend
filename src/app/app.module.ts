@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { Constant } from './resources';
 import { FileUploadService } from './file-upload.service';
 import { CharacterComponent } from './character/character.component';
 import { ParagraphComponent } from './paragraph/paragraph.component';
@@ -26,6 +25,7 @@ import { AllPostComponent } from './all-post/all-post.component';
 import { PostPreviewComponent } from './post-preview/post-preview.component';
 import { HelpComponent } from './help/help.component';
 import { AboutComponent } from './about/about.component';
+import { StateService } from './state.service';
 
 @NgModule({
   declarations: [
@@ -55,13 +55,13 @@ import { AboutComponent } from './about/about.component';
   ],
   providers: [
     FileUploadService,
-    Constant,
     SessionService,
     MessageService,
     UserService,
     CharacterService,
     ParagraphService,
-    PostService
+    PostService,
+    StateService
   ],
   bootstrap: [AppComponent],
   entryComponents: [

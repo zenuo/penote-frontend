@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { Constant } from './resources';
+import { StateService } from './state.service';
 
 const endpoint = '/api/uploads'
 
@@ -13,7 +13,8 @@ export class FileUploadService {
 
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state: StateService
   ) { }
 
   /**
@@ -28,7 +29,7 @@ export class FileUploadService {
         endpoint,
         formData,
         {
-          headers: { session: Constant.session_id, post: post_id },
+          headers: { session: this.state.sessionId, post: post_id },
           responseType: 'text'
         }
       )

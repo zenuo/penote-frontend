@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { MessageService } from './message.service';
-import { Character, Constant } from './resources';
+import { Character } from './resources';
 
 const endpoint = '/api/characters'
 const listEndpoint = '/api/character-list'

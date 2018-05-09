@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { Paragraph, Constant, Util } from './resources';
+import { Paragraph, Util } from './resources';
+import { StateService } from './state.service';
 
 const endpoint = '/api/paragraphs'
 const listEndpoint = '/api/paragraph-list'
@@ -15,7 +16,8 @@ export class ParagraphService {
 
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state:StateService
   ) { }
 
   /**
@@ -54,7 +56,7 @@ export class ParagraphService {
   public delete_by_id(para_id: string): Observable<boolean> {
     return this.httpClient.delete<boolean>(
       `${endpoint}/${para_id}`,
-      {headers: {session: Constant.session_id}}
+      {headers: {session: this.state.sessionId}}
     )
   }
 }

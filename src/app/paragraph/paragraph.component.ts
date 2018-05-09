@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Character, Constant, Paragraph } from '../resources';
+import { Character, Paragraph } from '../resources';
 import { CharacterService } from '../character.service';
 import { ParagraphService } from '../paragraph.service';
 import { MessageService } from '../message.service';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-paragraph',
@@ -23,7 +24,8 @@ export class ParagraphComponent implements OnInit {
   constructor(
     private characterService: CharacterService,
     private paragraphService: ParagraphService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state: StateService
   ) { }
 
   ngOnInit() {
@@ -38,7 +40,7 @@ export class ParagraphComponent implements OnInit {
   }
 
   isSignin(): boolean {
-    return Constant.session_id !== null
+    return this.state.sessionId !== null
   }
 
   delete(): void {

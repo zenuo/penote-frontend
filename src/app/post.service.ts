@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { MessageService } from './message.service';
-import { Post, Constant, Util } from './resources';
+import { Post, Util } from './resources';
+import { StateService } from './state.service';
 
 const endpoint = '/api/posts'
 const listEndpoint = '/api/post-list'
@@ -14,7 +15,8 @@ export class PostService {
 
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state: StateService
   ) { }
 
   /**
@@ -50,7 +52,7 @@ export class PostService {
     return this.httpClient.post<Post>(
       endpoint,
       body,
-      { headers: { session: Constant.session_id } }
+      { headers: { session: this.state.sessionId } }
     )
   }
 

@@ -1,13 +1,6 @@
 import { of, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-export class Constant {
-    // 会话ID
-    public static session_id: string = null;
-    // 用户
-    public static user: User = null;
-}
-
 export class Util {
     /**
      * 处理异常

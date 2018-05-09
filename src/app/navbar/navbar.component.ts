@@ -5,8 +5,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { SessionService } from '../session.service';
 import { MessageService } from '../message.service';
-import { Session, User, Constant } from '../resources';
+import { Session, User } from '../resources';
 import { UserService } from '../user.service';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent {
   constructor(
     private dialog: MatDialog,
     private sessionService: SessionService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state: StateService
   ) { }
 
   /**
@@ -42,8 +44,8 @@ export class NavbarComponent {
   signoutClick() {
     this.sessionService.signout().subscribe(result => {
       // 写入常量
-      Constant.session_id = null
-      Constant.user = null
+      this.state.sessionId = null
+      this.state.user = null
       // 提示
       this.messageService.openSnackBar('登出', '成功')
     })
@@ -53,7 +55,7 @@ export class NavbarComponent {
    * 判断是否登入
    */
   isSignin(): boolean {
-    return Constant.session_id !== null
+    return this.state.sessionId !== null
   }
 }
 
@@ -73,7 +75,8 @@ export class SigninDialog {
     public dialogRef: MatDialogRef<SigninDialog>,
     private sessionService: SessionService,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private state: StateService
   ) { }
 
   /**
@@ -84,12 +87,12 @@ export class SigninDialog {
       .signin(this.user_name, this.password)
       .subscribe(sess => {
         if (sess != null) {
-          Constant.session_id = sess.session
+          this.state.sessionId = sess.session
           //获取用户信息
           this.userService.get_by_user_id(sess.user_id).subscribe(user => {
             if (user != null) {
               //写入常量
-              Constant.user = user
+              this.state.user = user
               //提示
               this.messageService.openSnackBar(this.tag, `成功${user.name}`)
               //关闭

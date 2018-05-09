@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../message.service';
 import { PostService } from '../post.service';
-import { Constant, Post, Paragraph } from '../resources';
+import { Post, Paragraph } from '../resources';
 import { FileUploadService } from '../file-upload.service';
 import { ParagraphService } from '../paragraph.service';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-create-post',
@@ -33,7 +34,8 @@ export class CreatePostComponent implements OnInit {
     private messageService: MessageService,
     private postService: PostService,
     private fileUploadService: FileUploadService,
-    private paragraphService: ParagraphService
+    private paragraphService: ParagraphService,
+    private state: StateService
   ) {
     this.postFormGroup = this._formBuilder.group({
       title: ['', Validators.required]
@@ -51,7 +53,7 @@ export class CreatePostComponent implements OnInit {
   createPost(): void {
     const title = this.postFormGroup.get('title').value
     this.postService.create(
-      Constant.user.id,
+      this.state.sessionId,
       title
     ).subscribe(post => {
       if (post !== null && post.id !== null) {

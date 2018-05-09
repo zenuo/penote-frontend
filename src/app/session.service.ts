@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { Session, Constant, Util } from './resources';
+import { Session, Util } from './resources';
+import { StateService } from './state.service';
 
 const endpoint = '/api/sessions'
 
@@ -11,7 +12,8 @@ const endpoint = '/api/sessions'
 export class SessionService {
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state: StateService
   ) { }
 
   /**
@@ -35,12 +37,12 @@ export class SessionService {
    */
   signout(): Observable<boolean> {
     console.info('登出')
-    if (Constant.session_id == null) {
+    if (this.state.sessionId == null) {
       //若未登录,返回失败
       return of(false)
     } else {
       return this.httpClient
-        .delete<boolean>(`${endpoint}/${Constant.session_id}`)
+        .delete<boolean>(`${endpoint}/${this.state.sessionId}`)
         .pipe(catchError(Util.handleError(
           () => { this.messageService.openSnackBar('登出', "登出失败") },
           false

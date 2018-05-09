@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import { User, Constant, Util } from './resources';
+import { User, Util } from './resources';
+import { StatementVisitor } from '@angular/compiler';
+import { StateService } from './state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private state: StateService
   ) { }
 
   /**
@@ -25,7 +28,7 @@ export class UserService {
     return this.httpClient
       .get<User>(
         `${this.endpoint}/${user_id}`,
-        { headers: { "session": Constant.session_id } }
+        { headers: { "session": this.state.sessionId } }
       )
       .pipe(
         catchError(Util.handleError(
